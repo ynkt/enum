@@ -1,0 +1,31 @@
+{
+    "name": "ynkt/enum-like",
+    "type": "library",
+    "description": "Implementation like enum with PHP",
+    "keywords": [
+        "enum"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ynkt",
+            "email": "mail.yudai.nakata@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ynkt\\EnumLike\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ynkt\\Tests\\EnumLike\\": "tests/"
+        }
+    }
+}
