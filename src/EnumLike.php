@@ -195,6 +195,17 @@ abstract class EnumLike
     }
 
     /**
+     * @param string $class
+     * @param mixed $values
+     *
+     * @return EnumLike
+     */
+    protected static function createInstance(string $class, $values): EnumLike
+    {
+        return is_array($values) ? new $class(...$values) : new $class($values);
+    }
+
+    /**
      * @param $name
      * @param $arguments
      *
@@ -213,16 +224,5 @@ abstract class EnumLike
         }
 
         return static::__callStatic($name, $arguments);
-    }
-
-    /**
-     * @param string $class
-     * @param mixed $values
-     *
-     * @return EnumLike
-     */
-    protected static function createInstance(string $class, $values): EnumLike
-    {
-        return is_array($values) ? new $class(...$values) : new $class($values);
     }
 }
