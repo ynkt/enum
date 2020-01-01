@@ -13,6 +13,7 @@ namespace Ynkt\Tests\EnumLike;
 use PHPUnit\Framework\TestCase;
 use Ynkt\Tests\EnumLike\Fixtures\DayOfWeek;
 use Ynkt\Tests\EnumLike\Fixtures\Color;
+use Ynkt\Tests\EnumLike\Fixtures\RepositoryColor;
 
 /**
  * Class EnumLikeTest
@@ -29,6 +30,8 @@ class EnumLikeTest extends TestCase
         $this->assertCount(7, DayOfWeek::values());
 
         $this->assertCount(3, Color::values());
+
+        $this->assertCount(3, RepositoryColor::values());
     }
 
     /**
@@ -40,6 +43,8 @@ class EnumLikeTest extends TestCase
         $this->assertEquals('SATURDAY', DayOfWeek::SATURDAY()->name());
 
         $this->assertEquals('RED', Color::RED()->name());
+
+        $this->assertEquals('RED', RepositoryColor::RED()->name());
     }
 
     /**
@@ -51,6 +56,8 @@ class EnumLikeTest extends TestCase
         $this->assertEquals(6, DayOfWeek::SUNDAY()->ordinal());
 
         $this->assertEquals(0, Color::RED()->ordinal());
+
+        $this->assertEquals(0, RepositoryColor::RED()->ordinal());
     }
 
     /**
@@ -61,6 +68,8 @@ class EnumLikeTest extends TestCase
         $this->assertEquals(DayOfWeek::class, DayOfWeek::TUESDAY()->declaringClass());
 
         $this->assertEquals(Color::class, Color::BLACK()->declaringClass());
+
+        $this->assertEquals(RepositoryColor::class, RepositoryColor::BLACK()->declaringClass());
     }
 
     /**
@@ -75,6 +84,10 @@ class EnumLikeTest extends TestCase
         $sut = Color::BLUE();
         $this->assertTrue($sut->valueOf(Color::BLUE()));
         $this->assertFalse($sut->valueOf(Color::RED()));
+
+        $sut = RepositoryColor::BLUE();
+        $this->assertTrue($sut->valueOf(RepositoryColor::BLUE()));
+        $this->assertFalse($sut->valueOf(RepositoryColor::RED()));
     }
 
     /**
@@ -100,6 +113,8 @@ class EnumLikeTest extends TestCase
     public function color_code()
     {
         $this->assertEquals('#FF0000', Color::RED()->code());
+
+        $this->assertEquals('#FF0000', RepositoryColor::RED()->code());
     }
 
     /**
@@ -108,5 +123,7 @@ class EnumLikeTest extends TestCase
     public function color_rgb()
     {
         $this->assertEquals([0, 0, 0], Color::BLACK()->rgb());
+
+        $this->assertEquals([0, 0, 0], RepositoryColor::BLACK()->rgb());
     }
 }
