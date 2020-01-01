@@ -27,5 +27,8 @@
         "psr-4": {
             "Ynkt\\Tests\\EnumLike\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
