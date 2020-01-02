@@ -55,7 +55,7 @@ class Status extends EnumLike
 ## Static methods
 
 ```php
-// Prepared methods
+// Automatically prepared by library
 Status::values(); // Array of Status Enum instances
 
 // Provided by the above declaration
@@ -64,12 +64,32 @@ Status::IN_PROGRESS(); // Instance created with 'In Progress'
 Status::DONE(); // Instance created with 'Done'
 ```
 
+Static method helpers are implemented using ```__callStatic()```.
+
+If you care about IDE auto completion, you can use phpdoc.
+
+```php
+/**
+ * Class Status
+ * 
+ * @method static self READY()
+ * @method static self IN_PROGRESS()
+ * @method static self DONE()
+ */
+class Status extends EnumLike
+{
+    private const READY = 'Ready';
+    private const IN_PROGRESS = 'In Progress';
+    private const DONE = 'Done';
+}
+```
+
 ## Instance methods
 
 ```php
 $status = Status::READY();
 
-// Prepared methods
+// Automatically prepared by library
 $status->name(); // 'READY'
 $status->ordinal(); // 0
 $status->declaringClass(); // 'Status'
@@ -86,6 +106,70 @@ function updateStatus(Status $status){
   // ...
 }
 ```
+
+## Advanced Declaration
+
+### Multiple definition values
+
+```php
+class Color extends EnumLike
+{
+    private const RED = ['#FF0000', [255, 0, 0]];
+    private const BLUE = ['#0000FF', [0, 0, 255]];
+    private const BLACK = ['#000000', [0, 0, 0]];
+
+    protected function __construct(string $code, array $rgb) {}
+```
+
+### Except using class constant
+
+The following two ways of declaration are equivalent.
+
+```php
+class RepositoryColor extends EnumLike
+{
+    /**
+     * @overwrite
+     */
+    protected static function getConstants(string $class): array
+    {
+        return [
+            'RED'   => ['#FF0000', [255, 0, 0]],
+            'BLUE'  => ['#0000FF', [0, 0, 255]],
+            'BLACK' => ['#000000', [0, 0, 0]],
+        ];
+    }
+}
+```
+
+```php
+class Color extends EnumLike
+{
+    private const RED = ['#FF0000', [255, 0, 0]];
+    private const BLUE = ['#0000FF', [0, 0, 255]];
+    private const BLACK = ['#000000', [0, 0, 0]];
+}
+```
+
+### Get instance by Identifier
+
+```php
+class DayOfWeek extends EnumLike
+{
+    use ByIdTrait;
+
+    private const MONDAY = 1;
+    private const TUESDAY = 2;
+}
+
+$dayOfWeek = DayOfWeek::byId(1);
+$dayOfWeek->equals(DayOfWeek::MONDAY()); // true
+```
+
+# Note
+
+* Use the protected modifier for ```__constructor```
+* Do not manually declare a static method with the same name that uses to get an instance.
 
 # Examples
 
