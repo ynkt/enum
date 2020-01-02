@@ -64,7 +64,7 @@ class Status extends EnumLike
 // Prepared methods
 Status::values(); // Array of Status Enum instances
 
-// Your definitions
+// Provided by the above declaration
 Status::READY(); // Instance created with 'Ready'
 Status::IN_PROGRESS(); // Instance created with 'In Progress'
 Status::DONE(); // Instance created with 'Done'
@@ -81,7 +81,7 @@ $status->ordinal(); // 0
 $status->declaringClass(); // 'Status'
 $status->equals(Status::Ready()); // true
 
-// Your definitions
+// Provided by the above declaration
 $status->text(); // 'Ready'
 ```
 
