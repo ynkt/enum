@@ -12,7 +12,7 @@
 
 I created this library to make it easier to describe the behavior of enumerators and make them available in more situations than the existing Enum library.
 
-It has the following advantages:
+This library has the following advantages:
 
 * Multiple values can be declared for each enumerator
 * Enumerators can be declared from various data sources, such as class constant, DB, or configuration file
