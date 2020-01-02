@@ -1,7 +1,7 @@
 {
     "name": "ynkt/enum-like",
     "type": "library",
-    "description": "Implementation like enum with PHP",
+    "description": "Implementation like Enum with PHP",
     "keywords": [
         "enum"
     ],
