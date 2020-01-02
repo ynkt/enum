@@ -2,30 +2,21 @@
 
 # Table of Contents
 
-* Enum with PHP
 * Why
 * Requirements
 * Install
 * Usage
 * Examples
 
-# Enum with PHP
-
-Enumはコーディングに当たってとても便利な概念であることは言うまでもありません。
-
-引数のタイプヒントに利用する場合や、そのEnumの対象に関わる処理を分離する場合など、動作を安定させたり、コードの質を高めることができます。
-
-ただし、PHPではEnumが標準でサポートされていないため、ライブラリを利用するか、スクラッチで開発する必要があります。
-
 # Why
 
-本ライブラリでは、既存のライブラリに比べて、より直観的に利用でき、且つコーディングの量を抑えつつ、多くの場面でEnumを利用してもらうことを目的として作成しました。
+This library has been created to be more intuitive and to be used in more situations than the existing library.
 
-以下の点において利点があります。
+It has the following advantages:
 
-* 列挙項目の宣言が、定数による宣言以外にもDBや設定ファイルからの値取得でも可能
-* private修飾子を利用して定数を宣言でき、IDEの補完機能を必要以上に汚染しない
-* 1つの列挙項目につき、複数の定義値を宣言できる
+* In addition to constant declaration, enumerator can be declared even if the value is from DB or configuration file.
+* Constant declaration using private qualifier is possible
+* Multiple defined values can be declared for each enumerator
 
 # Requirements
 
