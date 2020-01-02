@@ -10,13 +10,12 @@
 
 # Why
 
-This library has been created to be more intuitive and to be used in more situations than the existing library.
+I created this library to make it easier to describe the behavior of enumerators and make them available in more situations than the existing Enum library.
 
 It has the following advantages:
 
-* Enumerators can be declared from various data sources, such as class constant, DB, or configuration file
-* Private qualifier can be used to class constant for declaration of enumerators
 * Multiple values can be declared for each enumerator
+* Enumerators can be declared from various data sources, such as class constant, DB, or configuration file
 
 # Requirements
 
