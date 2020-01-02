@@ -14,7 +14,7 @@ This library has been created to be more intuitive and to be used in more situat
 
 It has the following advantages:
 
-* Enumerator can declare by getting values from class constant or DB or configuration file
+* Enumerators can be declared from various data sources, such as class constants, DB, or configuration files
 * Private qualifier can use for constant declaration
 * Multiple values can be declared for each enumerator
 
