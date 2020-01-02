@@ -2,11 +2,11 @@
 
 # Table of Contents
 
-* Why
-* Requirements
-* Install
-* Usage
-* Examples
+* [Why](#why)
+* [Requirements](#requirements)
+* [Install](#install)
+* [Usage](#usage)
+* [Examples](#examples)
 
 # Why
 
