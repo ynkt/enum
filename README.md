@@ -119,6 +119,7 @@ class Color extends EnumLike
     private const BLACK = ['#000000', [0, 0, 0]];
 
     protected function __construct(string $code, array $rgb) {}
+}
 ```
 
 ### Except using class constant
