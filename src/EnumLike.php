@@ -63,7 +63,7 @@ abstract class EnumLike
      *
      * @return bool
      */
-    public function valueOf(EnumLike $instance): bool
+    public function equals(EnumLike $instance): bool
     {
         return get_class($this) === get_class($instance) && $this->name() === $instance->name();
     }

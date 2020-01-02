@@ -75,19 +75,19 @@ class EnumLikeTest extends TestCase
     /**
      * @test
      */
-    public function valueOf()
+    public function equals()
     {
         $sut = DayOfWeek::SATURDAY();
-        $this->assertTrue($sut->valueOf(DayOfWeek::SATURDAY()));
-        $this->assertFalse($sut->valueOf(DayOfWeek::TUESDAY()));
+        $this->assertTrue($sut->equals(DayOfWeek::SATURDAY()));
+        $this->assertFalse($sut->equals(DayOfWeek::TUESDAY()));
 
         $sut = Color::BLUE();
-        $this->assertTrue($sut->valueOf(Color::BLUE()));
-        $this->assertFalse($sut->valueOf(Color::RED()));
+        $this->assertTrue($sut->equals(Color::BLUE()));
+        $this->assertFalse($sut->equals(Color::RED()));
 
         $sut = RepositoryColor::BLUE();
-        $this->assertTrue($sut->valueOf(RepositoryColor::BLUE()));
-        $this->assertFalse($sut->valueOf(RepositoryColor::RED()));
+        $this->assertTrue($sut->equals(RepositoryColor::BLUE()));
+        $this->assertFalse($sut->equals(RepositoryColor::RED()));
     }
 
     /**

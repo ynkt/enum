@@ -58,7 +58,7 @@ class DayOfWeek extends EnumLike
      */
     public function isWeekEnd(): bool
     {
-        return $this->valueOf(self::SATURDAY()) || $this->valueOf(self::SUNDAY());
+        return $this->equals(self::SATURDAY()) || $this->equals(self::SUNDAY());
     }
 
     /**
