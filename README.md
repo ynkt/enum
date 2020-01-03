@@ -196,7 +196,7 @@ $dayOfWeek = DayOfWeek::byId(1);
 $dayOfWeek->equals(DayOfWeek::MONDAY()); // Returns true
 ```
 
-I think it will be helpful when you get an instance based on some identifiers other than ID.
+I think the implementation of ```ByIdTrait``` will be helpful when you get an instance based on some identifiers other than ID.
 
 # Examples
 
