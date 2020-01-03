@@ -37,7 +37,7 @@ abstract class EnumLike
     /**
      * @return string
      */
-    public function name(): string
+    final public function name(): string
     {
         return $this->name;
     }
@@ -45,7 +45,7 @@ abstract class EnumLike
     /**
      * @return int
      */
-    public function ordinal(): int
+    final public function ordinal(): int
     {
         return $this->ordinal;
     }
@@ -53,7 +53,7 @@ abstract class EnumLike
     /**
      * @return string
      */
-    public function declaringClass(): string
+    final public function declaringClass(): string
     {
         return get_class($this);
     }
@@ -65,7 +65,7 @@ abstract class EnumLike
      */
     public function equals(EnumLike $instance): bool
     {
-        return get_class($this) === get_class($instance) && $this->name() === $instance->name();
+        return $this->declaringClass() === $instance->declaringClass() && $this->name() === $instance->name();
     }
 
     /**
