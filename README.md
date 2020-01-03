@@ -76,6 +76,7 @@ Status::DONE(); // Returns an instance that 'Done' was passed as an argument to 
 ```
 
 Static methods of the enumerators are implemented by ```__callStatic()```.
+
 Therefore, if you care about IDE auto completion, I recommend using phpdoc as follows:
 
 ```php
@@ -137,7 +138,7 @@ class Color extends EnumLike
 
 ## Declare enumerators from data sources except class constant
 
-You can use Enum without using class constants by overwriting ```getConstants ()```.
+You can use Enum without using class constants by overwriting ```getConstants()```.
 
 ```getConstants()``` returns an associative array of the enumerations, and its keys are used as the enumerators name.
 
@@ -177,8 +178,6 @@ Using an identifier as a way to get an instance is a common pattern.
 So, as a way to achieve this, I have prepared sample code to get an instance based on the ID.
 You can use it simply by writing ```use ByIdTrait;``` when declaring Enum.
 
-I think it will be helpful when you get an instance based on some identifiers other than ID.
-
 ```php
 class DayOfWeek extends EnumLike
 {
@@ -194,8 +193,10 @@ class DayOfWeek extends EnumLike
 }
 
 $dayOfWeek = DayOfWeek::byId(1);
-$dayOfWeek->equals(DayOfWeek::MONDAY()); // true
+$dayOfWeek->equals(DayOfWeek::MONDAY()); // Returns true
 ```
+
+I think it will be helpful when you get an instance based on some identifiers other than ID.
 
 # Examples
 
