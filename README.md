@@ -6,6 +6,7 @@
 * [Requirements](#requirements)
 * [Install](#install)
 * [Usage](#usage)
+* [Tips](#tips)
 * [Examples](#examples)
 
 # Why
@@ -29,7 +30,17 @@ composer require ynkt/enum-like
 
 # Usage
 
+```EnumLike``` is an abstract class that needs to be extended to use.
+
+* You must use protected or public visibility when writing the ```__constructor()```.
+* Do not manually declare the static methods with the same name as the enumerator name.
+
 ## Basic Declaration
+
+The following code is an example of declaring enumerators using class constants.
+
+* The name of the enumerators is automatically used as the name of the static method.
+* The value of the enumerators is automatically passed as an argument to the ```constructor()```.
 
 ```php
 use Ynkt\EnumLike\EnumLike;
@@ -56,17 +67,16 @@ class Status extends EnumLike
 
 ```php
 // Automatically prepared by library
-Status::values(); // Array of Status Enum instances
+Status::values(); // Returns instances of the Enum class of all Enum constants
 
 // Provided by the above declaration
-Status::READY(); // Instance created with 'Ready'
-Status::IN_PROGRESS(); // Instance created with 'In Progress'
-Status::DONE(); // Instance created with 'Done'
+Status::READY(); // Returns an instance that 'Ready' was passed as an argument to the constructor
+Status::IN_PROGRESS(); // Returns an instance that 'In Progress' was passed as an argument to the constructor
+Status::DONE(); // Returns an instance that 'Done' was passed as an argument to the constructor
 ```
 
-Static method helpers are implemented using ```__callStatic()```.
-
-If you care about IDE auto completion, you can use phpdoc.
+Static methods of the enumerators are implemented by ```__callStatic()```.
+Therefore, if you care about IDE auto completion, I recommend using phpdoc as follows:
 
 ```php
 /**
@@ -90,13 +100,13 @@ class Status extends EnumLike
 $status = Status::READY();
 
 // Automatically prepared by library
-$status->name(); // 'READY'
-$status->ordinal(); // 0
-$status->declaringClass(); // 'Status'
-$status->equals(Status::Ready()); // true
+$status->name(); // Returns the name of the current enumerator. In this case returns 'READY'
+$status->ordinal(); // Returns the ordinal of the current enumerator. In this case returns 0
+$status->declaringClass(); // Returns the declaring class of the current enumerator. In this case returns 'Status'
+$status->equals(Status::Ready()); // Tests enum instances are equal. In this case returns true
 
 // Provided by the above declaration
-$status->text(); // 'Ready'
+$status->text(); // Returns 'Ready'
 ```
 
 ## Type hint
@@ -105,11 +115,14 @@ $status->text(); // 'Ready'
 function updateStatus(Status $status){
   // ...
 }
+
+updateStatus(Status::READY());
 ```
 
-## Advanced Declaration
+## Declare multiple values for each enumerator
 
-### Multiple definition values
+You can assign an array to the enumerator definitions.
+Also, its values are automatically passed to the constructor as a variable length arguments.
 
 ```php
 class Color extends EnumLike
@@ -122,7 +135,11 @@ class Color extends EnumLike
 }
 ```
 
-### Except using class constant
+## Declare enumerators from data sources except class constant
+
+You can use Enum without using class constants by overwriting ```getConstants ()```.
+
+```getConstants()``` returns an associative array of the enumerations, and its keys are used as the enumerators name.
 
 The following two ways of declaration are equivalent.
 
@@ -152,7 +169,15 @@ class Color extends EnumLike
 }
 ```
 
-### Get instance by Identifier
+# Tips
+
+## If you want to get instance by Identifier or something
+
+Using an identifier as a way to get an instance is a common pattern.
+So, as a way to achieve this, I have prepared sample code to get an instance based on the ID.
+You can use it simply by writing ```use ByIdTrait;``` when declaring Enum.
+
+I think it will be helpful when you get an instance based on some identifiers other than ID.
 
 ```php
 class DayOfWeek extends EnumLike
@@ -161,16 +186,16 @@ class DayOfWeek extends EnumLike
 
     private const MONDAY = 1;
     private const TUESDAY = 2;
+
+    private $id;   
+
+    public function id(): int { return $this->id; }
+    // ...
 }
 
 $dayOfWeek = DayOfWeek::byId(1);
 $dayOfWeek->equals(DayOfWeek::MONDAY()); // true
 ```
-
-# Note
-
-* Use the protected modifier for ```__constructor```
-* Do not manually declare a static method with the same name that uses to get an instance.
 
 # Examples
 
