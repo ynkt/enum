@@ -11,7 +11,7 @@
 
 # Why
 
-I created this library to make it easier to describe the behavior of enumerators and make them available in more situations than the existing Enum library.
+I created this library to make it easier to describe the behavior of enumerators and make them available in more situations than the existing Enum libraries.
 
 This library has the following advantages:
 
@@ -92,6 +92,8 @@ class Status extends EnumLike
     private const READY = 'Ready';
     private const IN_PROGRESS = 'In Progress';
     private const DONE = 'Done';
+
+    // ...
 }
 ```
 
@@ -122,7 +124,7 @@ updateStatus(Status::READY());
 
 ## Declare multiple values for each enumerator
 
-You can assign an array to the enumerator definitions.
+You can assign an array to the values of enumerators.
 Also, its values are automatically passed to the constructor as a variable length arguments.
 
 ```php
@@ -133,6 +135,8 @@ class Color extends EnumLike
     private const BLACK = ['#000000', [0, 0, 0]];
 
     protected function __construct(string $code, array $rgb) {}
+
+    // ...
 }
 ```
 
@@ -158,6 +162,8 @@ class RepositoryColor extends EnumLike
             'BLACK' => ['#000000', [0, 0, 0]],
         ];
     }
+
+    // ...
 }
 ```
 
@@ -167,6 +173,8 @@ class Color extends EnumLike
     private const RED = ['#FF0000', [255, 0, 0]];
     private const BLUE = ['#0000FF', [0, 0, 255]];
     private const BLACK = ['#000000', [0, 0, 0]];
+
+    // ...
 }
 ```
 
@@ -189,6 +197,7 @@ class DayOfWeek extends EnumLike
     private $id;   
 
     public function id(): int { return $this->id; }
+
     // ...
 }
 
