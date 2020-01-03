@@ -20,6 +20,8 @@ use ReflectionClass;
 abstract class EnumLike
 {
     /**
+     * Store created instances per Enum class
+     *
      * @var EnumLike[][]
      */
     private static $instances;
@@ -59,6 +61,8 @@ abstract class EnumLike
     }
 
     /**
+     * Tests enum instances are equal
+     *
      * @param EnumLike $instance
      *
      * @return bool
@@ -88,6 +92,8 @@ abstract class EnumLike
     }
 
     /**
+     * Gets an instance by the name of the enumerations
+     *
      * @param string $name
      *
      * @return static|null
@@ -100,6 +106,8 @@ abstract class EnumLike
     }
 
     /**
+     * Gets an instance that passes a given truth
+     *
      * @param callable|null $closure
      *
      * @return static|null
@@ -116,6 +124,8 @@ abstract class EnumLike
     }
 
     /**
+     * Gets instances of the Enum class of all Enum constants
+     *
      * @return static[]
      */
     public static function values(): array
@@ -124,6 +134,8 @@ abstract class EnumLike
     }
 
     /**
+     * Gets instances of the given Enum class from cache
+     *
      * @param string $class
      *
      * @return array
@@ -138,6 +150,8 @@ abstract class EnumLike
     }
 
     /**
+     * Stores instances of the given Enum class
+     *
      * @param string $class
      */
     private static function cacheInstances(string $class): void
@@ -146,6 +160,8 @@ abstract class EnumLike
     }
 
     /**
+     * Create instances of the given Enum class
+     *
      * @param string $class
      *
      * @return EnumLike[]
@@ -163,6 +179,8 @@ abstract class EnumLike
     }
 
     /**
+     * Gets constants of the given Enum class
+     *
      * @param string $class
      *
      * @return array
@@ -175,6 +193,8 @@ abstract class EnumLike
     }
 
     /**
+     * Builds an instance
+     *
      * @param string $class
      * @param string $name
      * @param int $ordinal
@@ -195,6 +215,8 @@ abstract class EnumLike
     }
 
     /**
+     * Creates an instance
+     *
      * @param string $class
      * @param mixed $values
      *
