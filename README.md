@@ -67,7 +67,7 @@ class Status extends EnumLike
 
 ```php
 // Automatically prepared by library
-Status::values(); // Returns instances of the Enum class of all Enum constants
+Status::values(); // Returns instances of the Enum class of all Enumerators
 
 // Provided by the above declaration
 Status::READY(); // Returns an instance that 'Ready' was passed as an argument to the constructor
