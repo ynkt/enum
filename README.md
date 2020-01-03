@@ -75,7 +75,7 @@ Status::IN_PROGRESS(); // Returns an instance that 'In Progress' was passed as a
 Status::DONE(); // Returns an instance that 'Done' was passed as an argument to the constructor
 ```
 
-Static methods of the enumerators are implemented by ```__callStatic()```.
+Static methods for getting an enumeration instance are implemented by ```__callStatic()```.
 
 Therefore, if you care about IDE auto completion, I recommend using phpdoc as follows:
 
