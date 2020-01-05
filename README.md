@@ -38,7 +38,7 @@ The following code uses class constant for the declaring enumerators.
 
 * The name of the enumerators is automatically used as the name of the static method.
 * The value of the enumerators is automatically passed as an argument to the ```__constructor()```.
-* **Note: Use protected or public visibility when describing the ```__constructor()```.**
+* **Note: Use protected or public visibility when writing the ```__constructor()```.**
 
 ```php
 use Ynkt\EnumLike\EnumLike;
@@ -184,7 +184,7 @@ class Color extends EnumLike
 
 Using an identifier as a way to get an instance is a common pattern.
 So, as a way to achieve this, I have prepared sample code to get an instance based on the ID.
-You can use it simply by describing ```use ByIdTrait;``` when declaring Enum.
+You can use it simply by writing ```use ByIdTrait;``` when declaring Enum.
 
 ```php
 class DayOfWeek extends EnumLike
