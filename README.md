@@ -11,11 +11,11 @@
 
 # Why
 
-I created this library to make it easier to describe the behavior of enumerators and make them available in more situations than the existing Enum libraries.
+I created this library for simplify describing the behavior of enumerators and using Enum in more situations.
 
 This library has the following advantages:
 
-* Multiple values can be declared for each enumerator
+* Multiple values can be declared per enumerator
 * Enumerators can be declared from various data sources, such as class constant, DB, or configuration file
 
 # Requirements
@@ -32,15 +32,15 @@ composer require ynkt/enum-like
 
 ```EnumLike``` is an abstract class that needs to be extended to use.
 
-* You must use protected or public visibility when writing the ```__constructor()```.
-* Do not manually declare the static methods with the same name as the enumerator name.
+* You must use protected or public visibility when describing the ```__constructor()```.
+* Do not declare the static methods that has the same name as the enumerator name.
 
 ## Basic Declaration
 
-The following code is an example of declaring enumerators using class constants.
+The following code uses class constant for the declaring enumerators. 
 
 * The name of the enumerators is automatically used as the name of the static method.
-* The value of the enumerators is automatically passed as an argument to the ```constructor()```.
+* The value of the enumerators is automatically passed as an argument to the ```__constructor()```.
 
 ```php
 use Ynkt\EnumLike\EnumLike;
@@ -66,7 +66,7 @@ class Status extends EnumLike
 ## Static methods
 
 ```php
-// Automatically prepared by library
+// Provided by this library
 Status::values(); // Returns instances of the Enum class of all Enumerators
 
 // Provided by the above declaration
@@ -75,9 +75,9 @@ Status::IN_PROGRESS(); // Returns an instance that 'In Progress' was passed as a
 Status::DONE(); // Returns an instance that 'Done' was passed as an argument to the constructor
 ```
 
-Static methods for getting an instance of enumerator are implemented by ```__callStatic()```.
+Static methods that has the same name as the enumerator name are implemented by ```__callStatic()```.
 
-Therefore, if you care about IDE auto completion, I recommend using phpdoc as follows:
+Therefore, if you care about the IDE auto completion, I recommend using the phpdoc as follows:
 
 ```php
 /**
@@ -102,11 +102,11 @@ class Status extends EnumLike
 ```php
 $status = Status::READY();
 
-// Automatically prepared by library
-$status->name(); // Returns the name of the current enumerator. In this case returns 'READY'
-$status->ordinal(); // Returns the ordinal of the current enumerator. In this case returns 0
-$status->declaringClass(); // Returns the declaring class of the current enumerator. In this case returns 'Status'
-$status->equals(Status::Ready()); // Tests enum instances are equal. In this case returns true
+// Provided by this library
+$status->name(); // Returns the name of the current enumerator. (e.g.:'READY')
+$status->ordinal(); // Returns the ordinal of the current enumerator. (e.g.:0)
+$status->declaringClass(); // Returns the declaring class of the current enumerator. (e.g.:'Status')
+$status->equals(Status::Ready()); // Tests enum instances are equal. (e.g.:true)
 
 // Provided by the above declaration
 $status->text(); // Returns 'Ready'
@@ -122,10 +122,10 @@ function updateStatus(Status $status){
 updateStatus(Status::READY());
 ```
 
-## Declare multiple values for each enumerator
+## Declare the multiple values per enumerator
 
-You can assign an array to the values of enumerators.
-Also, its values are automatically passed to the constructor as a variable length arguments.
+You can assign an array per enumerator.
+And, the elements of the assigned array are automatically passed to the ```__constructor()```.
 
 ```php
 class Color extends EnumLike
@@ -140,11 +140,11 @@ class Color extends EnumLike
 }
 ```
 
-## Declare enumerators from data sources except class constant
+## Declare the enumerators from various data sources
 
 You can use Enum without using class constants by overwriting ```getConstants()```.
 
-```getConstants()``` returns an associative array of the enumerators, and its keys are used as the name of the enumerator.
+```getConstants()``` returns an associative array, and keys of it are used as the name of the enumerator.
 
 The following two ways of declaration are equivalent.
 
@@ -180,11 +180,11 @@ class Color extends EnumLike
 
 # Tips
 
-## If you want to get instance by Identifier or something
+## If you want to get an instance by Identifier or something
 
 Using an identifier as a way to get an instance is a common pattern.
 So, as a way to achieve this, I have prepared sample code to get an instance based on the ID.
-You can use it simply by writing ```use ByIdTrait;``` when declaring Enum.
+You can use it simply by describing ```use ByIdTrait;``` when declaring Enum.
 
 ```php
 class DayOfWeek extends EnumLike
@@ -205,7 +205,7 @@ $dayOfWeek = DayOfWeek::byId(1);
 $dayOfWeek->equals(DayOfWeek::MONDAY()); // Returns true
 ```
 
-I think the implementation of ```ByIdTrait``` will be helpful when you get an instance based on some identifiers other than ID.
+I think the implementation of the ```ByIdTrait``` will be helpful when you get an instance based on some identifiers other than ID.
 
 # Examples
 
