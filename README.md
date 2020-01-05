@@ -38,7 +38,7 @@ The following code uses class constant for the declaring enumerators.
 
 * The name of the enumerators is automatically used as the name of the static method.
 * The value of the enumerators is automatically passed as an argument to the ```__constructor()```.
-* *Note: Use protected or public visibility when describing the ```__constructor()```.*
+* **Note: Use protected or public visibility when describing the ```__constructor()```.**
 
 ```php
 use Ynkt\EnumLike\EnumLike;
@@ -77,7 +77,7 @@ Static methods that has the same name as the enumerator name are implemented by 
 
 Therefore, if you care about the IDE auto completion, I recommend using the phpdoc as follows:
 
-*Note: Do not declare the static methods that has the same name as the enumerator name.*
+**Note: Do not declare the static methods that has the same name as the enumerator name.**
 
 ```php
 /**
