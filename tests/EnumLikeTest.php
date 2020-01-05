@@ -93,6 +93,21 @@ class EnumLikeTest extends TestCase
     /**
      * @test
      */
+    public function test_toString()
+    {
+        $sut = DayOfWeek::MONDAY();
+        $this->assertEquals(sprintf('%s::%s', DayOfWeek::class, $sut->name()), (string)$sut);
+
+        $sut = Color::RED();
+        $this->assertEquals(sprintf('%s::%s', Color::class, $sut->name()), (string)$sut);
+
+        $sut = RepositoryColor::RED();
+        $this->assertEquals(sprintf('%s::%s', RepositoryColor::class, $sut->name()), (string)$sut);
+    }
+
+    /**
+     * @test
+     */
     public function dayOfWeek_isWeekEnd()
     {
         $this->assertTrue(DayOfWeek::SUNDAY()->isWeekEnd());
@@ -105,6 +120,7 @@ class EnumLikeTest extends TestCase
     public function dayOfWeek_byId()
     {
         $this->assertEquals(DayOfWeek::THURSDAY(), DayOfWeek::byId(4));
+        $this->assertEquals(null, DayOfWeek::byId(-1));
     }
 
     /**
