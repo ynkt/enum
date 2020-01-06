@@ -20,7 +20,7 @@ use ReflectionClass;
 abstract class EnumLike
 {
     /**
-     * Store created instances per Enum class
+     * Stores created instances per Enum class
      *
      * @var EnumLike[][]
      */
@@ -160,7 +160,7 @@ abstract class EnumLike
     }
 
     /**
-     * Create instances of the given Enum class
+     * Creates instances of the given Enum class
      *
      * @param string $class
      *
