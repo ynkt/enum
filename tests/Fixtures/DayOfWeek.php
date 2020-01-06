@@ -64,7 +64,7 @@ class DayOfWeek extends EnumLike
     /**
      * @return int
      */
-    public function id(): int
+    protected function id(): int
     {
         return $this->id;
     }
