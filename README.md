@@ -122,7 +122,7 @@ function updateStatus(Status $status){
 updateStatus(Status::READY());
 ```
 
-## Declare the multiple values per enumerator
+## How to declare the multiple values per enumerator
 
 You can assign an array per enumerator.
 And, the elements of the assigned array are automatically passed to the ```__constructor()```.
@@ -140,7 +140,7 @@ class Color extends EnumLike
 }
 ```
 
-## Declare the enumerators from various data sources
+## How to declare the enumerators from various data sources
 
 You can use Enum without using class constants by overwriting ```getConstants()```.
 
