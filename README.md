@@ -11,7 +11,7 @@
 
 # Why
 
-I created this library for simplify describing the behavior of enumerators and using Enum in more situations.
+I created this library for simplify describing the behavior of enumerators and using Enum in many situations.
 
 This library has the following advantages:
 
@@ -38,7 +38,7 @@ The following code uses class constant for the declaring enumerators.
 
 * The name of the enumerators is automatically used as the name of the static method.
 * The value of the enumerators is automatically passed as an argument to the ```__constructor()```.
-* **Note: Use protected or public visibility when writing the ```__constructor()```.**
+* **Note: Use protected visibility when writing the ```__constructor()```.**
 
 ```php
 use Ynkt\EnumLike\EnumLike;
