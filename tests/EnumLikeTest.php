@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Ynkt\Tests\EnumLike;
 
 use PHPUnit\Framework\TestCase;
+use Ynkt\EnumLike\NoMatchingEnumeratorsException;
 use Ynkt\Tests\EnumLike\Fixtures\DayOfWeek;
 use Ynkt\Tests\EnumLike\Fixtures\Color;
 use Ynkt\Tests\EnumLike\Fixtures\RepositoryColor;
@@ -32,6 +33,27 @@ class EnumLikeTest extends TestCase
         $this->assertCount(3, Color::values());
 
         $this->assertCount(3, RepositoryColor::values());
+    }
+
+    /**
+     * @test
+     */
+    public function getInstance_whenMethodNameExists()
+    {
+        $this->assertInstanceOf(DayOfWeek::class, DayOfWeek::MONDAY());
+
+        $this->assertInstanceOf(Color::class, Color::RED());
+
+        $this->assertInstanceOf(RepositoryColor::class, RepositoryColor::RED());
+    }
+
+    /**
+     * @test
+     */
+    public function getInstance_whenMethodNameDoesNotExist()
+    {
+        $this->expectException(NoMatchingEnumeratorsException::class);
+        DayOfWeek::FOO();
     }
 
     /**
@@ -117,10 +139,18 @@ class EnumLikeTest extends TestCase
     /**
      * @test
      */
-    public function dayOfWeek_byId()
+    public function dayOfWeek_byId_whenGivenIdExists()
     {
         $this->assertEquals(DayOfWeek::THURSDAY(), DayOfWeek::byId(4));
-        $this->assertEquals(null, DayOfWeek::byId(-1));
+    }
+
+    /**
+     * @test
+     */
+    public function dayOfWeek_byId_whenGivenIdDoesNotExist()
+    {
+        $this->expectException(NoMatchingEnumeratorsException::class);
+        DayOfWeek::byId(-1);
     }
 
     /**

@@ -18,19 +18,27 @@ namespace Ynkt\EnumLike;
 trait ByIdTrait
 {
     /**
-     * @return int
+     * @return string|int
      */
-    abstract protected function id(): int;
+    abstract protected function id();
 
     /**
-     * @param int $id
+     * @param string|int $id
      *
      * @return static
      */
-    public static function byId(int $id)
+    public static function byId($id)
     {
-        return self::first(function (self $instance) use ($id) {
+        $instance = self::first(function (self $instance) use ($id) {
             return $id == $instance->id();
         });
+
+        if (is_null($instance)) {
+            throw new NoMatchingEnumeratorsException(
+                sprintf('An enumerator with ID:[%s] does not exist in the %s.', $id, static::class)
+            );
+        }
+
+        return $instance;
     }
 }

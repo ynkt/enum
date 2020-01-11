@@ -96,13 +96,21 @@ abstract class EnumLike
      *
      * @param string $name
      *
-     * @return static|null
+     * @return static
      */
     private static function byName(string $name): ?EnumLike
     {
-        return self::first(function (EnumLike $instance) use ($name) {
+        $instance = self::first(function (EnumLike $instance) use ($name) {
             return $name === $instance->name();
         });
+
+        if (is_null($instance)) {
+            throw new NoMatchingEnumeratorsException(
+                sprintf('An enumerator with Name:[%s] does not exist in the %s.', $name, static::class)
+            );
+        }
+
+        return $instance;
     }
 
     /**
