@@ -105,7 +105,7 @@ abstract class EnumLike
         });
 
         if (is_null($instance)) {
-            throw new NoMatchingEnumeratorsException(
+            throw new NotFoundException(
                 sprintf('An enumerator with Name:[%s] does not exist in the %s.', $name, static::class)
             );
         }

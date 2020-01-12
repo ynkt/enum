@@ -13,10 +13,10 @@ namespace Ynkt\EnumLike;
 use RuntimeException;
 
 /**
- * Class NoMatchingEnumeratorsException
+ * Class NotFoundException
  *
  * @package Ynkt\EnumLike
  */
-class NoMatchingEnumeratorsException extends RuntimeException
+class NotFoundException extends RuntimeException
 {
 }

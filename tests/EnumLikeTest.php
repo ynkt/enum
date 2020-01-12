@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace Ynkt\Tests\EnumLike;
 
 use PHPUnit\Framework\TestCase;
-use Ynkt\EnumLike\NoMatchingEnumeratorsException;
+use Ynkt\EnumLike\NotFoundException;
 use Ynkt\Tests\EnumLike\Fixtures\DayOfWeek;
 use Ynkt\Tests\EnumLike\Fixtures\Color;
 use Ynkt\Tests\EnumLike\Fixtures\RepositoryColor;
@@ -52,7 +52,7 @@ class EnumLikeTest extends TestCase
      */
     public function getInstance_whenMethodNameDoesNotExist()
     {
-        $this->expectException(NoMatchingEnumeratorsException::class);
+        $this->expectException(NotFoundException::class);
         DayOfWeek::FOO();
     }
 
@@ -149,7 +149,7 @@ class EnumLikeTest extends TestCase
      */
     public function dayOfWeek_byId_whenGivenIdDoesNotExist()
     {
-        $this->expectException(NoMatchingEnumeratorsException::class);
+        $this->expectException(NotFoundException::class);
         DayOfWeek::byId(-1);
     }
 
