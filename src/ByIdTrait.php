@@ -29,14 +29,12 @@ trait ByIdTrait
      */
     public static function byId($id)
     {
-        $instance = self::first(function (self $instance) use ($id) {
-            return $id == $instance->id();
-        });
+        $expression = function (self $instance) use ($id) { return $id == $instance->id(); };
 
-        if (is_null($instance)) {
+        if (! self::has($expression)) {
             throw (new EnumeratorNotFoundException())->setQueryParameter(static::class, compact('id'));
         }
 
-        return $instance;
+        return self::first($expression);
     }
 }

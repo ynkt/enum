@@ -100,15 +100,13 @@ abstract class EnumLike
      */
     private static function byName(string $name): ?EnumLike
     {
-        $instance = self::first(function (EnumLike $instance) use ($name) {
-            return $name === $instance->name();
-        });
+        $expression = function (self $instance) use ($name) { return $name === $instance->name(); };
 
-        if (is_null($instance)) {
+        if (! self::has($expression)) {
             throw (new EnumeratorNotFoundException())->setQueryParameter(static::class, compact('name'));
         }
 
-        return $instance;
+        return self::first($expression);
     }
 
     /**
