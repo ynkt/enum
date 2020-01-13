@@ -66,6 +66,9 @@ class Status extends EnumLike
 ```php
 // Provided by this library
 Status::values(); // Returns instances of the Enum class of all Enumerators
+Status::first(); // Returns the first instance
+Status::first(fn(Status $status) => $status->text() == 'Ready'); // Returns the first instance that passes a given truth
+Status::has(fn(Status $status) => $status->text() == 'Done'); // Tests an instance exists that passes a given truth (e.g.:true)
 
 // Provided by the above declaration
 Status::READY(); // Returns an instance that 'Ready' was passed as an argument to the constructor
@@ -103,10 +106,10 @@ class Status extends EnumLike
 $status = Status::READY();
 
 // Provided by this library
-$status->name(); // Returns the name of the current enumerator. (e.g.:'READY')
-$status->ordinal(); // Returns the ordinal of the current enumerator. (e.g.:0)
-$status->declaringClass(); // Returns the declaring class of the current enumerator. (e.g.:'Status')
-$status->equals(Status::Ready()); // Tests enum instances are equal. (e.g.:true)
+$status->name(); // Returns the name of the current enumerator (e.g.:'READY')
+$status->ordinal(); // Returns the ordinal of the current enumerator (e.g.:0)
+$status->declaringClass(); // Returns the declaring class of the current enumerator (e.g.:'Status')
+$status->equals(Status::Ready()); // Tests enum instances are equal (e.g.:true)
 
 // Provided by the above declaration
 $status->text(); // Returns 'Ready'

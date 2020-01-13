@@ -34,9 +34,7 @@ trait ByIdTrait
         });
 
         if (is_null($instance)) {
-            throw new NotFoundException(
-                sprintf('An enumerator with ID:[%s] does not exist in the %s.', $id, static::class)
-            );
+            throw (new EnumeratorNotFoundException())->setQueryParameter(static::class, compact('id'));
         }
 
         return $instance;

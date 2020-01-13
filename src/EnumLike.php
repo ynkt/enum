@@ -105,22 +105,20 @@ abstract class EnumLike
         });
 
         if (is_null($instance)) {
-            throw new NotFoundException(
-                sprintf('An enumerator with Name:[%s] does not exist in the %s.', $name, static::class)
-            );
+            throw (new EnumeratorNotFoundException())->setQueryParameter(static::class, compact('name'));
         }
 
         return $instance;
     }
 
     /**
-     * Gets an instance that passes a given truth
+     * Gets the first instance that passes a given truth
      *
      * @param callable|null $closure
      *
      * @return static|null
      */
-    protected static function first(callable $closure = null): ?EnumLike
+    final public static function first(callable $closure = null): ?EnumLike
     {
         foreach (self::getInstances(static::class) as $instance) {
             if (is_null($closure) || $closure($instance)) {
@@ -132,11 +130,23 @@ abstract class EnumLike
     }
 
     /**
+     * Is exists an enumerator that passes a given truth
+     *
+     * @param callable $closure
+     *
+     * @return bool
+     */
+    final public static function has(callable $closure): bool
+    {
+        return ! is_null(self::first($closure));
+    }
+
+    /**
      * Gets instances of the Enum class of all Enum constants
      *
      * @return static[]
      */
-    public static function values(): array
+    final public static function values(): array
     {
         return self::getInstances(static::class);
     }

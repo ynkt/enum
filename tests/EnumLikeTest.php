@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace Ynkt\Tests\EnumLike;
 
 use PHPUnit\Framework\TestCase;
-use Ynkt\EnumLike\NotFoundException;
+use Ynkt\EnumLike\EnumeratorNotFoundException;
 use Ynkt\Tests\EnumLike\Fixtures\DayOfWeek;
 use Ynkt\Tests\EnumLike\Fixtures\Color;
 use Ynkt\Tests\EnumLike\Fixtures\RepositoryColor;
@@ -38,7 +38,28 @@ class EnumLikeTest extends TestCase
     /**
      * @test
      */
-    public function getInstance_whenMethodNameExists()
+    public function first()
+    {
+        $this->assertEquals(DayOfWeek::MONDAY(), DayOfWeek::first());
+
+        $this->assertEquals(
+            DayOfWeek::TUESDAY(),
+            DayOfWeek::first(function (DayOfWeek $instance) { return $instance->id() == 2; }));
+    }
+
+    /**
+     * @test
+     */
+    public function has()
+    {
+        $this->assertTrue(DayOfWeek::has(function (DayOfWeek $instance) { return $instance->id() == 3; }));
+        $this->assertFalse(DayOfWeek::has(function (DayOfWeek $instance) { return $instance->id() == 10; }));
+    }
+
+    /**
+     * @test
+     */
+    public function getInstance_whenEnumeratorFounds()
     {
         $this->assertInstanceOf(DayOfWeek::class, DayOfWeek::MONDAY());
 
@@ -50,9 +71,9 @@ class EnumLikeTest extends TestCase
     /**
      * @test
      */
-    public function getInstance_whenMethodNameDoesNotExist()
+    public function getInstance_whenEnumeratorNotFounds()
     {
-        $this->expectException(NotFoundException::class);
+        $this->expectException(EnumeratorNotFoundException::class);
         DayOfWeek::FOO();
     }
 
@@ -139,7 +160,7 @@ class EnumLikeTest extends TestCase
     /**
      * @test
      */
-    public function dayOfWeek_byId_whenGivenIdExists()
+    public function dayOfWeek_byId_whenEnumeratorFounds()
     {
         $this->assertEquals(DayOfWeek::THURSDAY(), DayOfWeek::byId(4));
     }
@@ -147,9 +168,9 @@ class EnumLikeTest extends TestCase
     /**
      * @test
      */
-    public function dayOfWeek_byId_whenGivenIdDoesNotExist()
+    public function dayOfWeek_byId_whenEnumeratorNotFounds()
     {
-        $this->expectException(NotFoundException::class);
+        $this->expectException(EnumeratorNotFoundException::class);
         DayOfWeek::byId(-1);
     }
 
