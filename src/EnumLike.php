@@ -200,11 +200,9 @@ abstract class EnumLike
      * @param string $class
      *
      * @return array
-     * @noinspection PhpDocMissingThrowsInspection
      */
     protected static function getConstants(string $class)
     {
-        /** @noinspection PhpUnhandledExceptionInspection */
         return (new ReflectionClass($class))->getConstants();
     }
 
@@ -221,11 +219,7 @@ abstract class EnumLike
     private static function buildInstance(string $class, string $name, int $ordinal, $values): EnumLike
     {
         $instance = static::createInstance($class, $values);
-
-        /** @noinspection PhpUndefinedMethodInspection */
-        $instance->initializeNameAttribute($name);
-        /** @noinspection PhpUndefinedMethodInspection */
-        $instance->initializeOrdinalAttribute($ordinal);
+        $instance->initializeFoundationalProperties($name, $ordinal);
 
         return $instance;
     }
@@ -244,6 +238,18 @@ abstract class EnumLike
     }
 
     /**
+     * Initialize properties of the this class
+     *
+     * @param string $name
+     * @param int $ordinal
+     */
+    private function initializeFoundationalProperties(string $name, int $ordinal): void
+    {
+        $this->name = $name;
+        $this->ordinal = $ordinal;
+    }
+
+    /**
      * @param $name
      * @param $arguments
      *
@@ -251,16 +257,6 @@ abstract class EnumLike
      */
     public function __call($name, $arguments)
     {
-        if ($name === 'initializeNameAttribute') {
-            $this->name = $arguments[0];
-            return;
-        }
-
-        if ($name === 'initializeOrdinalAttribute') {
-            $this->ordinal = $arguments[0];
-            return;
-        }
-
         return static::__callStatic($name, $arguments);
     }
 }
