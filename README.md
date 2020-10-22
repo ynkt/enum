@@ -52,8 +52,7 @@ class Status extends EnumLike
     private const IN_PROGRESS = 'In Progress';
     private const DONE = 'Done';
 
-    /** * @var string */
-    private $text;
+    private string $text;
 
     protected function __construct(string $text) { $this->text = $text; }
 
@@ -67,8 +66,8 @@ class Status extends EnumLike
 // Provided by this library
 Status::values(); // Returns instances of the Enum class of all Enumerators
 Status::first(); // Returns the first instance
-Status::first(fn(Status $status) => $status->text() == 'Ready'); // Returns the first instance that passes a given truth
-Status::has(fn(Status $status) => $status->text() == 'Done'); // Tests an instance exists that passes a given truth (e.g.:true)
+Status::first(fn(Status $status) => $status->text() === 'Ready'); // Returns the first instance that passes a given truth
+Status::has(fn(Status $status) => $status->text() === 'Done'); // Tests an instance exists that passes a given truth (e.g.:true)
 
 // Provided by the above declaration
 Status::READY(); // Returns an instance that 'Ready' was passed as an argument to the constructor
@@ -197,7 +196,7 @@ class DayOfWeek extends EnumLike
     private const MONDAY = 1;
     private const TUESDAY = 2;
 
-    private $id;   
+    private int $id;   
 
     public function id(): int { return $this->id; }
 

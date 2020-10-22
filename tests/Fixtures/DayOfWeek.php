@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -38,10 +39,7 @@ class DayOfWeek extends EnumLike
     private const SATURDAY = 6;
     private const SUNDAY = 7;
 
-    /**
-     * @var int
-     */
-    private $id;
+    private int $id;
 
     /**
      * DayOfWeek constructor.
@@ -61,11 +59,5 @@ class DayOfWeek extends EnumLike
         return $this->equals(self::SATURDAY()) || $this->equals(self::SUNDAY());
     }
 
-    /**
-     * @return string|int
-     */
-    public function id()
-    {
-        return $this->id;
-    }
+    public function id(): int { return $this->id; }
 }

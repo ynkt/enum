@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -27,14 +28,11 @@ class Color extends EnumLike
     private const BLUE = ['#0000FF', [0, 0, 255]];
     private const BLACK = ['#000000', [0, 0, 0]];
 
-    /**
-     * @var string
-     */
-    private $code;
+    private string $code;
     /**
      * @var int[]
      */
-    private $rgb;
+    private array $rgb;
 
     /**
      * Color constructor.
@@ -48,19 +46,7 @@ class Color extends EnumLike
         $this->rgb = $rgb;
     }
 
-    /**
-     * @return string
-     */
-    public function code(): string
-    {
-        return $this->code;
-    }
+    public function code(): string { return $this->code; }
 
-    /**
-     * @return int[]
-     */
-    public function rgb(): array
-    {
-        return $this->rgb;
-    }
+    public function rgb(): array { return $this->rgb; }
 }

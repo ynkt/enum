@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -37,14 +38,11 @@ class RepositoryColor extends EnumLike
         ];
     }
 
-    /**
-     * @var string
-     */
-    private $code;
+    private string $code;
     /**
      * @var int[]
      */
-    private $rgb;
+    private array $rgb;
 
     /**
      * RepositoryColor constructor.
@@ -58,19 +56,10 @@ class RepositoryColor extends EnumLike
         $this->rgb = $rgb;
     }
 
-    /**
-     * @return string
-     */
-    public function code(): string
-    {
-        return $this->code;
-    }
+    public function code(): string { return $this->code; }
 
     /**
      * @return int[]
      */
-    public function rgb(): array
-    {
-        return $this->rgb;
-    }
+    public function rgb(): array { return $this->rgb; }
 }

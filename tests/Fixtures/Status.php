@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -21,10 +22,12 @@ class Status extends EnumLike
     private const IN_PROGRESS = 'In Progress';
     private const DONE = 'Done';
 
-    /** * @var string */
-    private $text;
+    private string $text;
 
-    protected function __construct(string $text) { $this->text = $text; }
+    protected function __construct(string $text)
+    {
+        $this->text = $text;
+    }
 
     public function text(): string { return $this->text; }
 }

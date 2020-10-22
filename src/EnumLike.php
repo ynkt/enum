@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -24,37 +25,16 @@ abstract class EnumLike
      *
      * @var EnumLike[][]
      */
-    private static $instances;
+    private static array $instances;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var int
-     */
-    private $ordinal;
+    private int $ordinal;
 
-    /**
-     * @return string
-     */
-    final public function name(): string
-    {
-        return $this->name;
-    }
+    final public function name(): string { return $this->name; }
 
-    /**
-     * @return int
-     */
-    final public function ordinal(): int
-    {
-        return $this->ordinal;
-    }
+    final public function ordinal(): int { return $this->ordinal; }
 
-    /**
-     * @return string
-     */
     final public function declaringClass(): string
     {
         return get_class($this);
@@ -69,12 +49,10 @@ abstract class EnumLike
      */
     public function equals(EnumLike $instance): bool
     {
-        return $this->declaringClass() === $instance->declaringClass() && $this->name() === $instance->name();
+        return $this->declaringClass() === $instance->declaringClass()
+            && $this->name() === $instance->name();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return sprintf('%s::%s', $this->declaringClass(), $this->name());
@@ -100,7 +78,7 @@ abstract class EnumLike
      */
     private static function byName(string $name): ?EnumLike
     {
-        $expression = function (self $instance) use ($name) { return $name === $instance->name(); };
+        $expression = fn(self $instance) => $name === $instance->name();
 
         if (! self::has($expression)) {
             throw (new EnumeratorNotFoundException())->setQueryParameter(static::class, compact('name'));

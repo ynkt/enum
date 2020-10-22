@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -29,7 +30,7 @@ trait ByIdTrait
      */
     public static function byId($id)
     {
-        $expression = function (self $instance) use ($id) { return $id == $instance->id(); };
+        $expression = fn(self $instance) => $id == $instance->id();
 
         if (! self::has($expression)) {
             throw (new EnumeratorNotFoundException())->setQueryParameter(static::class, compact('id'));

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -29,9 +30,7 @@ class EnumLikeTest extends TestCase
     public function values()
     {
         $this->assertCount(7, DayOfWeek::values());
-
         $this->assertCount(3, Color::values());
-
         $this->assertCount(3, RepositoryColor::values());
     }
 
@@ -44,7 +43,8 @@ class EnumLikeTest extends TestCase
 
         $this->assertEquals(
             DayOfWeek::TUESDAY(),
-            DayOfWeek::first(function (DayOfWeek $instance) { return $instance->id() == 2; }));
+            DayOfWeek::first(fn(DayOfWeek $instance) => $instance->id() === 2)
+        );
     }
 
     /**
@@ -52,8 +52,8 @@ class EnumLikeTest extends TestCase
      */
     public function has()
     {
-        $this->assertTrue(DayOfWeek::has(function (DayOfWeek $instance) { return $instance->id() == 3; }));
-        $this->assertFalse(DayOfWeek::has(function (DayOfWeek $instance) { return $instance->id() == 10; }));
+        $this->assertTrue(DayOfWeek::has(fn(DayOfWeek $instance) => $instance->id() === 3));
+        $this->assertFalse(DayOfWeek::has(fn(DayOfWeek $instance) => $instance->id() === 10));
     }
 
     /**
@@ -62,9 +62,7 @@ class EnumLikeTest extends TestCase
     public function getInstance_whenEnumeratorFounds()
     {
         $this->assertInstanceOf(DayOfWeek::class, DayOfWeek::MONDAY());
-
         $this->assertInstanceOf(Color::class, Color::RED());
-
         $this->assertInstanceOf(RepositoryColor::class, RepositoryColor::RED());
     }
 
@@ -109,9 +107,7 @@ class EnumLikeTest extends TestCase
     public function declaringClass()
     {
         $this->assertEquals(DayOfWeek::class, DayOfWeek::TUESDAY()->declaringClass());
-
         $this->assertEquals(Color::class, Color::BLACK()->declaringClass());
-
         $this->assertEquals(RepositoryColor::class, RepositoryColor::BLACK()->declaringClass());
     }
 
