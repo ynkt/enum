@@ -151,7 +151,7 @@ You can use Enum without using class constants by overwriting ```getConstants()`
 The following two ways of declaration are equivalent.
 
 ```php
-class RepositoryColor extends EnumLike
+class ColorFromDataSource extends EnumLike
 {
     /**
      * @overwrite

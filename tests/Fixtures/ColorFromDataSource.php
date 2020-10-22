@@ -14,7 +14,7 @@ namespace Ynkt\Tests\EnumLike\Fixtures;
 use Ynkt\EnumLike\EnumLike;
 
 /**
- * Class RepositoryColor
+ * Class ColorFromDataSource
  *
  * @package Ynkt\Tests\EnumLike\Fixtures
  *
@@ -22,7 +22,7 @@ use Ynkt\EnumLike\EnumLike;
  * @method static self BLUE()
  * @method static self BLACK()
  */
-class RepositoryColor extends EnumLike
+class ColorFromDataSource extends EnumLike
 {
     /**
      * @param string $class
@@ -45,7 +45,7 @@ class RepositoryColor extends EnumLike
     private array $rgb;
 
     /**
-     * RepositoryColor constructor.
+     * ColorFromDataSource constructor.
      *
      * @param string $code
      * @param int[] $rgb
