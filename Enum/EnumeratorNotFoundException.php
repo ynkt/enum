@@ -5,18 +5,18 @@ declare(strict_types=1);
 /**
  * @license MIT
  * @copyright 2020 Nakata Yudai
- * @link https://github.com/ynkt/enum-like
+ * @link https://github.com/ynkt/enum
  * @author ynkt
  */
 
-namespace Ynkt\EnumLike;
+namespace Ynkt\Enum;
 
 use RuntimeException;
 
 /**
  * Class EnumeratorNotFoundException
  *
- * @package Ynkt\EnumLike
+ * @package Ynkt\Enum
  */
 class EnumeratorNotFoundException extends RuntimeException
 {

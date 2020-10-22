@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phpunit>
     <testsuites>
-        <testsuite name="EnumLike Test Suite">
+        <testsuite name="Enum Test Suite">
             <directory suffix=".php">./tests</directory>
         </testsuite>
     </testsuites>

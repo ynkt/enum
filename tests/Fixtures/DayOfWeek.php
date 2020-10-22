@@ -5,19 +5,19 @@ declare(strict_types=1);
 /**
  * @license MIT
  * @copyright 2020 Nakata Yudai
- * @link https://github.com/ynkt/enum-like
+ * @link https://github.com/ynkt/enum
  * @author ynkt
  */
 
-namespace Ynkt\Tests\EnumLike\Fixtures;
+namespace Ynkt\Tests\Enum\Fixtures;
 
-use Ynkt\EnumLike\ByIdTrait;
-use Ynkt\EnumLike\EnumLike;
+use Ynkt\Enum\ByIdTrait;
+use Ynkt\Enum\Enum;
 
 /**
  * Class DayOfWeek
  *
- * @package Ynkt\Tests\EnumLike\Fixtures
+ * @package Ynkt\Tests\Enum\Fixtures
  *
  * @method static self MONDAY()
  * @method static self TUESDAY()
@@ -27,7 +27,7 @@ use Ynkt\EnumLike\EnumLike;
  * @method static self SATURDAY()
  * @method static self SUNDAY()
  */
-class DayOfWeek extends EnumLike
+class DayOfWeek extends Enum
 {
     use ByIdTrait;
 

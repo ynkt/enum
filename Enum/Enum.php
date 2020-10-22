@@ -5,25 +5,25 @@ declare(strict_types=1);
 /**
  * @license MIT
  * @copyright 2020 Nakata Yudai
- * @link https://github.com/ynkt/enum-like
+ * @link https://github.com/ynkt/enum
  * @author ynkt
  */
 
-namespace Ynkt\EnumLike;
+namespace Ynkt\Enum;
 
 use ReflectionClass;
 
 /**
- * Class EnumLike
+ * Class Enum
  *
- * @package Ynkt\EnumLike
+ * @package Ynkt\Enum
  */
-abstract class EnumLike
+abstract class Enum
 {
     /**
      * Stores created instances per Enum class
      *
-     * @var EnumLike[][]
+     * @var Enum[][]
      */
     private static array $instances;
 
@@ -43,11 +43,11 @@ abstract class EnumLike
     /**
      * Tests enum instances are equal
      *
-     * @param EnumLike $instance
+     * @param Enum $instance
      *
      * @return bool
      */
-    public function equals(EnumLike $instance): bool
+    public function equals(Enum $instance): bool
     {
         return $this->declaringClass() === $instance->declaringClass()
             && $this->name() === $instance->name();
@@ -76,7 +76,7 @@ abstract class EnumLike
      *
      * @return static
      */
-    private static function byName(string $name): ?EnumLike
+    private static function byName(string $name): ?Enum
     {
         $expression = fn(self $instance) => $name === $instance->name();
 
@@ -94,7 +94,7 @@ abstract class EnumLike
      *
      * @return static|null
      */
-    final public static function first(callable $closure = null): ?EnumLike
+    final public static function first(callable $closure = null): ?Enum
     {
         foreach (self::getInstances(static::class) as $instance) {
             if (is_null($closure) || $closure($instance)) {
@@ -158,7 +158,7 @@ abstract class EnumLike
      *
      * @param string $class
      *
-     * @return EnumLike[]
+     * @return Enum[]
      */
     private static function createInstances(string $class): array
     {
@@ -192,9 +192,9 @@ abstract class EnumLike
      * @param int $ordinal
      * @param mixed $values
      *
-     * @return EnumLike
+     * @return Enum
      */
-    private static function buildInstance(string $class, string $name, int $ordinal, $values): EnumLike
+    private static function buildInstance(string $class, string $name, int $ordinal, $values): Enum
     {
         $instance = static::createInstance($class, $values);
         $instance->initializeFoundationalProperties($name, $ordinal);
@@ -208,9 +208,9 @@ abstract class EnumLike
      * @param string $class
      * @param mixed $values
      *
-     * @return EnumLike
+     * @return Enum
      */
-    protected static function createInstance(string $class, $values): EnumLike
+    protected static function createInstance(string $class, $values): Enum
     {
         return is_array($values) ? new $class(...$values) : new $class($values);
     }

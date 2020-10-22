@@ -5,18 +5,18 @@ declare(strict_types=1);
 /**
  * @license MIT
  * @copyright 2020 Nakata Yudai
- * @link https://github.com/ynkt/enum-like
+ * @link https://github.com/ynkt/enum
  * @author ynkt
  */
 
-namespace Ynkt\Tests\EnumLike\Fixtures;
+namespace Ynkt\Tests\Enum\Fixtures;
 
-use Ynkt\EnumLike\EnumLike;
+use Ynkt\Enum\Enum;
 
 /**
  * Class Status
  */
-class Status extends EnumLike
+class Status extends Enum
 {
     private const READY = 'Ready';
     private const IN_PROGRESS = 'In Progress';

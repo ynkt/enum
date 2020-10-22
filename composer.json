@@ -1,5 +1,5 @@
 {
-    "name": "ynkt/enum-like",
+    "name": "ynkt/enum",
     "type": "library",
     "description": "Implementation like Enum with PHP",
     "keywords": [
@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Ynkt\\EnumLike\\": "src/"
+            "Ynkt\\Enum\\": "Enum/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ynkt\\Tests\\EnumLike\\": "tests/"
+            "Ynkt\\Tests\\Enum\\": "tests/"
         }
     },
     "scripts": {

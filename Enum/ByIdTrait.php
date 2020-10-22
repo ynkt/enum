@@ -5,16 +5,16 @@ declare(strict_types=1);
 /**
  * @license MIT
  * @copyright 2020 Nakata Yudai
- * @link https://github.com/ynkt/enum-like
+ * @link https://github.com/ynkt/enum
  * @author ynkt
  */
 
-namespace Ynkt\EnumLike;
+namespace Ynkt\Enum;
 
 /**
  * Trait ByIdTrait
  *
- * @package Ynkt\EnumLike
+ * @package Ynkt\Enum
  */
 trait ByIdTrait
 {

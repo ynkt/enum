@@ -5,24 +5,24 @@ declare(strict_types=1);
 /**
  * @license MIT
  * @copyright 2020 Nakata Yudai
- * @link https://github.com/ynkt/enum-like
+ * @link https://github.com/ynkt/enum
  * @author ynkt
  */
 
-namespace Ynkt\Tests\EnumLike\Fixtures;
+namespace Ynkt\Tests\Enum\Fixtures;
 
-use Ynkt\EnumLike\EnumLike;
+use Ynkt\Enum\Enum;
 
 /**
  * Class Color
  *
- * @package Ynkt\Tests\EnumLike\Fixtures
+ * @package Ynkt\Tests\Enum\Fixtures
  *
  * @method static self RED()
  * @method static self BLUE()
  * @method static self BLACK()
  */
-class Color extends EnumLike
+class Color extends Enum
 {
     private const RED = ['#FF0000', [255, 0, 0]];
     private const BLUE = ['#0000FF', [0, 0, 255]];

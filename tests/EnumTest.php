@@ -5,24 +5,24 @@ declare(strict_types=1);
 /**
  * @license MIT
  * @copyright 2020 Nakata Yudai
- * @link https://github.com/ynkt/enum-like
+ * @link https://github.com/ynkt/enum
  * @author ynkt
  */
 
-namespace Ynkt\Tests\EnumLike;
+namespace Ynkt\Tests\Enum;
 
 use PHPUnit\Framework\TestCase;
-use Ynkt\EnumLike\EnumeratorNotFoundException;
-use Ynkt\Tests\EnumLike\Fixtures\DayOfWeek;
-use Ynkt\Tests\EnumLike\Fixtures\Color;
-use Ynkt\Tests\EnumLike\Fixtures\ColorFromDataSource;
+use Ynkt\Enum\EnumeratorNotFoundException;
+use Ynkt\Tests\Enum\Fixtures\DayOfWeek;
+use Ynkt\Tests\Enum\Fixtures\Color;
+use Ynkt\Tests\Enum\Fixtures\ColorFromDataSource;
 
 /**
- * Class EnumLikeTest
+ * Class EnumTest
  *
- * @package Ynkt\Tests\EnumLike
+ * @package Ynkt\Tests\Enum
  */
-class EnumLikeTest extends TestCase
+class EnumTest extends TestCase
 {
     /**
      * @test

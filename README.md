@@ -20,17 +20,17 @@ This library has the following advantages:
 
 # Requirements
 
-* PHP ^7.2
+* PHP ^7.4
 
 # Install
 
 ```shell script
-composer require ynkt/enum-like
+composer require ynkt/enum
 ```
 
 # Usage
 
-```EnumLike``` is an abstract class that needs to be extended to use.
+```Enum``` is an abstract class that needs to be extended to use.
 
 ## Basic Declaration
 
@@ -41,12 +41,12 @@ The following code uses class constant for the declaring enumerators.
 * **Note: Use protected visibility when writing the ```__constructor()```.**
 
 ```php
-use Ynkt\EnumLike\EnumLike;
+use Ynkt\Enum\Enum;
 
 /**
  * Class Status
  */
-class Status extends EnumLike
+class Status extends Enum
 {
     private const READY = 'Ready';
     private const IN_PROGRESS = 'In Progress';
@@ -89,7 +89,7 @@ Therefore, if you care about the IDE auto completion, I recommend using the phpd
  * @method static self IN_PROGRESS()
  * @method static self DONE()
  */
-class Status extends EnumLike
+class Status extends Enum
 {
     private const READY = 'Ready';
     private const IN_PROGRESS = 'In Progress';
@@ -130,7 +130,7 @@ You can assign an array per enumerator.
 And, the elements of the assigned array are automatically passed to the ```__constructor()```.
 
 ```php
-class Color extends EnumLike
+class Color extends Enum
 {
     private const RED = ['#FF0000', [255, 0, 0]];
     private const BLUE = ['#0000FF', [0, 0, 255]];
@@ -151,7 +151,7 @@ You can use Enum without using class constants by overwriting ```getConstants()`
 The following two ways of declaration are equivalent.
 
 ```php
-class ColorFromDataSource extends EnumLike
+class ColorFromDataSource extends Enum
 {
     /**
      * @overwrite
@@ -170,7 +170,7 @@ class ColorFromDataSource extends EnumLike
 ```
 
 ```php
-class Color extends EnumLike
+class Color extends Enum
 {
     private const RED = ['#FF0000', [255, 0, 0]];
     private const BLUE = ['#0000FF', [0, 0, 255]];
@@ -189,7 +189,7 @@ So, as a way to achieve this, I have prepared sample code to get an instance bas
 You can use it simply by writing ```use ByIdTrait;``` when declaring Enum.
 
 ```php
-class DayOfWeek extends EnumLike
+class DayOfWeek extends Enum
 {
     use ByIdTrait;
 
@@ -211,4 +211,4 @@ I think the implementation of the ```ByIdTrait``` will be helpful when you get a
 
 # Examples
 
-https://github.com/ynkt/enum-like/tree/master/tests/Fixtures
+https://github.com/ynkt/enum/tree/master/tests/Fixtures
