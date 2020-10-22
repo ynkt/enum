@@ -11,12 +11,11 @@
 
 # Why
 
-I created this library for simplify describing the behavior of enumerators and using Enum in many situations.
+I created this library to allow Enum to be used in many situations.
 
 This library has the following advantages:
-
 * Multiple values can be declared per enumerator
-* Enumerators can be declared from various data sources, such as class constant, DB, or configuration file
+* You can declare Enum from various data sources, such as class constant, DB, or configuration file
 
 # Requirements
 
@@ -30,15 +29,12 @@ composer require ynkt/enum
 
 # Usage
 
-```Enum``` is an abstract class that needs to be extended to use.
+```Enum``` is an abstract class needs to be extended to use.
 
 ## Basic Declaration
 
-The following code uses class constant for the declaring enumerators. 
-
-* The name of the enumerators is automatically used as the name of the static method.
-* The value of the enumerators is automatically passed as an argument to the ```__constructor()```.
-* **Note: Use protected visibility when writing the ```__constructor()```.**
+The following code uses class constant for the declaring Enum. 
+**Note: Use protected visibility when writing the ```__constructor()```.**
 
 ```php
 use Ynkt\Enum\Enum;
@@ -54,6 +50,7 @@ class Status extends Enum
 
     private string $text;
 
+    // The argument of __constructor() is automatically assigned to the value of the enumerator
     protected function __construct(string $text) { $this->text = $text; }
 
     public function text(): string { return $this->text; }
@@ -66,19 +63,19 @@ class Status extends Enum
 // Provided by this library
 Status::values(); // Returns instances of the Enum class of all Enumerators
 Status::first(); // Returns the first instance
-Status::first(fn(Status $status) => $status->text() === 'Ready'); // Returns the first instance that passes a given truth
-Status::has(fn(Status $status) => $status->text() === 'Done'); // Tests an instance exists that passes a given truth (e.g.:true)
+Status::first(callable $closure); // Returns the first instance that passes a given truth
+Status::has(callable $closure); // Tests an instance exists that passes a given truth
 
-// Provided by the above declaration
-Status::READY(); // Returns an instance that 'Ready' was passed as an argument to the constructor
-Status::IN_PROGRESS(); // Returns an instance that 'In Progress' was passed as an argument to the constructor
-Status::DONE(); // Returns an instance that 'Done' was passed as an argument to the constructor
+// Provided by the user declaration
+// This library automatically provide the static method whose name is same of the enumerators name.
+// The following methods return an Enum instance.
+Status::READY();
+Status::IN_PROGRESS();
+Status::DONE();
 ```
 
 Static methods that has the same name as the enumerator name are implemented by ```__callStatic()```.
-
 Therefore, if you care about the IDE auto completion, I recommend using the phpdoc as follows:
-
 **Note: Do not declare the static methods that has the same name as the enumerator name.**
 
 ```php
@@ -110,11 +107,13 @@ $status->ordinal(); // Returns the ordinal of the current enumerator (e.g.:0)
 $status->declaringClass(); // Returns the declaring class of the current enumerator (e.g.:'Status')
 $status->equals(Status::Ready()); // Tests enum instances are equal (e.g.:true)
 
-// Provided by the above declaration
+// Provided by the user declaration
 $status->text(); // Returns 'Ready'
 ```
 
 ## Type hint
+
+You can use classes that inherit from Enum for type hints.
 
 ```php
 function updateStatus(Status $status){
@@ -126,8 +125,7 @@ updateStatus(Status::READY());
 
 ## How to declare the multiple values per enumerator
 
-You can assign an array per enumerator.
-And, the elements of the assigned array are automatically passed to the ```__constructor()```.
+If you want to declare the multiple values per enumerator, you can assign an array.
 
 ```php
 class Color extends Enum
@@ -136,17 +134,18 @@ class Color extends Enum
     private const BLUE = ['#0000FF', [0, 0, 255]];
     private const BLACK = ['#000000', [0, 0, 0]];
 
+    // The argument of __constructor() is automatically assigned to the value of the enumerator
     protected function __construct(string $code, array $rgb) {}
 
     // ...
 }
 ```
 
-## How to declare the enumerators from various data sources
+## How to declare the Enum from various data sources
 
-You can use Enum without using class constants by overwriting ```getConstants()```.
-
-```getConstants()``` returns an associative array, and keys of it are used as the name of the enumerator.
+If you want to declare an Enum based on data that is not a class constant,
+you can overwrite ```getConstants()```.
+If ```getConstants()``` returns an associative array, it is the same of the declaring the class constants.
 
 The following two ways of declaration are equivalent.
 
@@ -203,11 +202,12 @@ class DayOfWeek extends Enum
     // ...
 }
 
+// You can use byId() to get the Enum instance.
 $dayOfWeek = DayOfWeek::byId(1);
 $dayOfWeek->equals(DayOfWeek::MONDAY()); // Returns true
 ```
 
-I think the implementation of the ```ByIdTrait``` will be helpful when you get an instance based on some identifiers other than ID.
+I think the implementation of the ```ByIdTrait``` will be helpful when you get an instance based on some identifiers.
 
 # Examples
 
