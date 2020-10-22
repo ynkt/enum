@@ -34,7 +34,12 @@ composer require ynkt/enum
 ## Basic Declaration
 
 The following code uses class constant for the declaring Enum. 
-**Note: Use protected visibility when writing the ```__constructor()```.**
+
+**Notes**
+
+**- Use protected visibility when writing the ```__constructor()```**
+
+**- Do not declare the methods that has the same name of the enumerator name**
 
 ```php
 use Ynkt\Enum\Enum;
@@ -75,8 +80,8 @@ Status::DONE();
 ```
 
 Static methods that has the same name as the enumerator name are implemented by ```__callStatic()```.
+
 Therefore, if you care about the IDE auto completion, I recommend using the phpdoc as follows:
-**Note: Do not declare the static methods that has the same name as the enumerator name.**
 
 ```php
 /**
@@ -145,7 +150,6 @@ class Color extends Enum
 
 If you want to declare an Enum based on data that is not a class constant,
 you can overwrite ```getConstants()```.
-If ```getConstants()``` returns an associative array, it is the same of the declaring the class constants.
 
 The following two ways of declaration are equivalent.
 
@@ -184,8 +188,7 @@ class Color extends Enum
 ## If you want to get an instance by Identifier or something
 
 Using an identifier as a way to get an instance is a common pattern.
-So, as a way to achieve this, I have prepared sample code to get an instance based on the ID.
-You can use it simply by writing ```use ByIdTrait;``` when declaring Enum.
+So, as a way to achieve this, I have prepared ```ByIdTrait``` to get an instance based on the ID.
 
 ```php
 class DayOfWeek extends Enum
